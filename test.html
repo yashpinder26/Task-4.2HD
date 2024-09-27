@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Control</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <script type="module">
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAAzsdmdDjw-u218vwYsT02p4qVz3qDw1c",
+            authDomain: "task42hd.firebaseapp.com",
+            databaseURL: "https://task42hd-default-rtdb.firebaseio.com",
+            projectId: "task42hd",
+            storageBucket: "task42hd.appspot.com",
+            messagingSenderId: "698653328269",
+            appId: "1:698653328269:web:177d3f0f14ad3da3edf3c4",
+            measurementId: "G-DMRMDNBYRW"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        window.setTrafficLight = function(color) {
+            const trafficLightRef = ref(database, 'trafficLight');
+            set(trafficLightRef, color)
+                .then(() => {
+                    console.log("Traffic light color set to:", color);
+                })
+                .catch((error) => {
+                    console.error("Error setting traffic light color:", error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Traffic Light Control</h1>
+
+    <div class="button_contain">
+        <input type="button" id="red" name="color" value="red" onclick="setTrafficLight('red')"><br>
+        <input type="button" id="green" name="color" value="green" onclick="setTrafficLight('green')"><br>
+        <input type="button" id="blue" name="color" value="blue" onclick="setTrafficLight('blue')"><br>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Traffic Light Control System</p>
+    </footer>
+</body>
+</html>
