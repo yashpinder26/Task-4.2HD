@@ -1,5 +1,4 @@
 #include <WiFiNINA.h> 
-#include <ArduinoJson.h> 
 #include <Firebase_Arduino_WiFiNINA.h>  
 
 const int redPin = 5;
